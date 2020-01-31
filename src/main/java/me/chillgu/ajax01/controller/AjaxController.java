@@ -34,7 +34,7 @@ public class AjaxController {
 	
 	@PostMapping("/json")
 	@ResponseBody
-	public MemberForm responseByJson(@RequestBody String member, 
+	public JSONObject responseByJson(@RequestBody String member, 
 										@RequestHeader HttpHeaders header) throws Exception {
 		
 		JSONParser jsonParser = new JSONParser();
@@ -46,11 +46,7 @@ public class AjaxController {
 		log.info("userId = " + jsonObject.get("userId"));
 		log.info("userPwd = " + jsonObject.get("userPwd"));
 		log.info("===================");
-		
-		MemberForm memberForm = new MemberForm();
-		memberForm.setUserId((String)jsonObject.get("userId"));
-		memberForm.setUserPwd((String)jsonObject.get("userPwd"));
-		
-		return memberForm;
+	
+		return jsonObject;
 	}
 }
